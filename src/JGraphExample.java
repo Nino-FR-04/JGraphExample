@@ -66,5 +66,12 @@ public class JGraphExample {
             System.out.print(dfsIterator.next() + " ");
         }
         
+        // Calcula el camino más corto de Lima a Machu Picchu usando el algoritmo de Dijkstra
+        System.out.println("\n\nCamino más corto de Lima a Machu Picchu:");
+        DijkstraShortestPath<String, DefaultWeightedEdge> dijkstra = new DijkstraShortestPath<>(peruGraph);
+        System.out.println(dijkstra.getPath("Lima", "Machu Picchu"));
+        System.out.println("Distancia total: " + dijkstra.getPathWeight("Lima", "Machu Picchu") + " km");
+        
+        
     }
 }
