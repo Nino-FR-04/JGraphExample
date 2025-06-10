@@ -45,6 +45,26 @@ public class JGraphExample {
         // Grado del vértice "Cusco" (número de aristas conectadas)
         System.out.println("Conexiones desde Cusco: " + peruGraph.degreeOf("Cusco"));
         
+        // Crea un inspector para analizar la conectividad del grafo
+        ConnectivityInspector<String, DefaultWeightedEdge> inspector = new ConnectivityInspector<>(peruGraph);
+        System.out.println("\n¿Es conexo? " + inspector.isConnected());
+        System.out.println("Componentes conexas: " + inspector.connectedSets());
+        
+        // Realiza un recorrido en amplitud (BFS) desde el vertice "Lima"
+        System.out.println("\nRecorrido BFS desde Lima:");
+        Iterator<String> bfsIterator = new BreadthFirstIterator<>(peruGraph, "Lima");
+        // Itera e imprime los vértices en orden BFS
+        while (bfsIterator.hasNext()) {
+            System.out.print(bfsIterator.next() + " ");
+        }
+        
+        // Realiza un recorrido en profundidad (DFS) empezando desde el vertice "Cusco"
+        System.out.println("\n\nRecorrido DFS desde Cusco:");
+        Iterator<String> dfsIterator = new DepthFirstIterator<>(peruGraph, "Cusco");
+        // Itera e imprime los vértices en orden DFS
+        while (dfsIterator.hasNext()) {
+            System.out.print(dfsIterator.next() + " ");
+        }
         
     }
 }
