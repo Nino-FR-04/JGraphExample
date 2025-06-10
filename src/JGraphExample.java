@@ -38,6 +38,13 @@ public class JGraphExample {
         DefaultWeightedEdge e6 = peruGraph.addEdge("Puno", "Lima");
         peruGraph.setEdgeWeight(e6, 1300.0);
         
+        // Número total de vértices en el grafo
+        System.out.println("Número de destinos(Vertices): " + peruGraph.vertexSet().size());
+        // Número total de aristas (rutas) en el grafo
+        System.out.println("Número de rutas: " + peruGraph.edgeSet().size());
+        // Grado del vértice "Cusco" (número de aristas conectadas)
+        System.out.println("Conexiones desde Cusco: " + peruGraph.degreeOf("Cusco"));
+        
         
     }
 }
