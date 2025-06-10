@@ -72,6 +72,21 @@ public class JGraphExample {
         System.out.println(dijkstra.getPath("Lima", "Machu Picchu"));
         System.out.println("Distancia total: " + dijkstra.getPathWeight("Lima", "Machu Picchu") + " km");
         
-        
+        // ->Graficar
+        // Crea un exportador para generar una representación del grafo en formato DOT
+        DOTExporter<String, DefaultWeightedEdge> exporter = new DOTExporter<>();
+        // Identificadores de vértices, reemplazando espacios por guiones bajos
+        exporter.setVertexIdProvider(vertex -> vertex.replace(" ", "_"));
+        // Etiquetas de las aristas para mostrar los pesos
+        exporter.setEdgeAttributeProvider(edge -> {
+            Map<String, Attribute> attributes = new java.util.HashMap<>();
+            attributes.put("label", DefaultAttribute.createAttribute(peruGraph.getEdgeWeight(edge)));
+            return attributes;
+        });
+
+        // Escribe la representación DOT en un StringWriter
+        StringWriter writer = new StringWriter();
+        exporter.exportGraph(peruGraph, writer);
+        System.out.println("\nRepresentación DOT del grafo:\n" + writer);
     }
 }
